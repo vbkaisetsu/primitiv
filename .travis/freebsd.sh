@@ -9,6 +9,7 @@ sudo qemu-system-x86_64 ./FreeBSD-11.1-RELEASE-amd64.qcow2 -m 2048 -net user,hos
 
 sleep 90
 
+sudo ssh-keygen -A
 export SSHCMD="sshpass -p password ssh -o ServerAliveInterval=30 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@localhost -p10022"
 export SCPCMD="sshpass -p password scp -o ServerAliveInterval=30 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -P10022 -r"
 
