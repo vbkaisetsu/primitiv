@@ -1,3 +1,5 @@
+sudo: yes
+
 matrix:
   include:
     - os: linux
@@ -9,6 +11,8 @@ matrix:
     - os: linux
       env: SCRIPT=fedora
       services: docker
+    - os: linux
+      env: SCRIPT=freebsd
     - os: osx
       env: SCRIPT=osx
 
