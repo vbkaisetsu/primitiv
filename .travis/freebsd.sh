@@ -2,7 +2,7 @@
 set -xe
 
 # before_install
-apt install -y qemu sshpass xz-utils
+sudo apt install -y qemu sshpass xz-utils
 wget https://github.com/vbkaisetsu/qemu-freebsd-ssh-enabled/raw/master/FreeBSD-11.1-RELEASE-amd64.qcow2.xz
 xz -d ./FreeBSD-11.1-RELEASE-amd64.qcow2.xz
 sudo qemu-system-x86_64 -enable-kvm ./FreeBSD-11.1-RELEASE-amd64.qcow2 -m 1600 -net user,hostfwd=tcp::10022-:22 -net nic -nographic &
@@ -29,5 +29,5 @@ $SSHCMD "cd primitiv/python-primitiv && ./setup.py build"
 $SSHCMD "cd primitiv/python-primitiv && ./setup.py test"
 
 # after_script
-killall qemu-system-x86_64
+sudo killall qemu-system-x86_64
 rm ./FreeBSD-11.1-RELEASE-amd64.qcow2
