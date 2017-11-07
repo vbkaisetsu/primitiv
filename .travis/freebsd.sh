@@ -5,7 +5,7 @@ set -xe
 sudo apt install -y qemu sshpass xz-utils
 wget https://github.com/vbkaisetsu/qemu-freebsd-ssh-enabled/raw/master/FreeBSD-11.1-RELEASE-amd64.qcow2.xz
 xz -d ./FreeBSD-11.1-RELEASE-amd64.qcow2.xz
-sudo qemu-system-x86_64 ./FreeBSD-11.1-RELEASE-amd64.qcow2 -m 2048 -net user,hostfwd=tcp::10022-:22 -net nic -nographic &
+sudo qemu-system-x86_64 ./FreeBSD-11.1-RELEASE-amd64.qcow2 -m 2048 -net user,hostfwd=tcp::10022-:22 -net nic -nographic -object rng-random,filename=/dev/hwrng,id=rng0 -device virtio-rng-pci,rng=rng0 &
 
 sleep 90
 
