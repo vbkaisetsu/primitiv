@@ -2,19 +2,19 @@ sudo: yes
 
 matrix:
   include:
-    - os: linux
-      env: SCRIPT=ubuntu
-      services: docker
-    - os: linux
-      env: SCRIPT=debian
-      services: docker
-    - os: linux
-      env: SCRIPT=fedora
-      services: docker
+    #- os: linux
+      #env: SCRIPT=ubuntu
+      #services: docker
+    #- os: linux
+      #env: SCRIPT=debian
+      #services: docker
+    #- os: linux
+      #env: SCRIPT=fedora
+      #services: docker
     - os: linux
       env: SCRIPT=freebsd
-    - os: osx
-      env: SCRIPT=osx
+    #- os: osx
+      #env: SCRIPT=osx
 
 script:
   - $TRAVIS_BUILD_DIR/.travis/${SCRIPT}.sh
