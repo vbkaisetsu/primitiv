@@ -12,7 +12,7 @@ cmake . -DBUILD_TEST=OFF
 make && make install
 git clone https://github.com/KhronosGroup/OpenCL-CLHPP.git $TRAVIS_BUILD_DIR/OpenCL-CLHPP
 cd $TRAVIS_BUILD_DIR/OpenCL-CLHPP
-cmake .
+cmake . -DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF
 make && make install
 
 # script
