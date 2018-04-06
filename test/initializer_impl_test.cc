@@ -49,8 +49,8 @@ TEST_F(InitializerImplTest, CheckUniform) {
     init.apply(x);
     double m1 = 0, m2 = 0;
     for (float v : x.to_vector()) {
-      EXPECT_LT(tc.lower, v);
-      EXPECT_GE(tc.upper, v);
+      EXPECT_LE(tc.lower, v);
+      EXPECT_GT(tc.upper, v);
       m1 += v;
       m2 += v * v;
     }
@@ -132,8 +132,8 @@ TEST_F(InitializerImplTest, CheckXavierUniform) {
 
     double m1 = 0, m2 = 0;
     for (float v : x.to_vector()) {
-      EXPECT_LT(-bound, v);
-      EXPECT_GE(bound, v);
+      EXPECT_LE(-bound, v);
+      EXPECT_GT(bound, v);
       m1 += v;
       m2 += v * v;
     }
@@ -217,8 +217,8 @@ TEST_F(InitializerImplTest, CheckXavierUniformConv2D) {
 
     double m1 = 0, m2 = 0;
     for (float v : x.to_vector()) {
-      EXPECT_LT(-bound, v);
-      EXPECT_GE(bound, v);
+      EXPECT_LE(-bound, v);
+      EXPECT_GT(bound, v);
       m1 += v;
       m2 += v * v;
     }

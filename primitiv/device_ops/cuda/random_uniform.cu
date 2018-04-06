@@ -9,7 +9,8 @@ namespace {
 __global__ void rand_affine_dev(
     float shift, float scale, std::uint32_t size, float *py) {
   const std::uint32_t i = IDX;
-  if (i < size) py[i] = py[i] * scale + shift;
+  const float r = py[i] == 1.f ? 0.f : py[i];
+  if (i < size) py[i] = r * scale + shift;
 }
 
 }  // namespace
