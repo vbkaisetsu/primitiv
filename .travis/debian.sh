@@ -7,7 +7,7 @@ docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/primitiv -td debian:stable /bi
 
 # install
 docker exec travis-ci bash -c "apt update"
-docker exec travis-ci bash -c "apt install -y build-essential cmake googletest"
+docker exec travis-ci bash -c "apt install -y build-essential cmake googletest pocl-opencl-icd"
 
 # TODO(vbkaisetsu):
 # Debian stretch contains Eigen 3.3.2. It has a bug around EIGEN_MPL2_ONLY
@@ -27,12 +27,6 @@ docker exec travis-ci bash -c "wget https://github.com/CNugteren/CLBlast/archive
 docker exec travis-ci bash -c "mkdir ./clblast"
 docker exec travis-ci bash -c "tar xf ./clblast.tar.gz -C ./clblast --strip-components 1"
 docker exec travis-ci bash -c "cd ./clblast && cmake . && make && make install"
-# pocl 0.13 does not contain mem_fence() function that is used by primitiv.
-# We build the latest pocl instead of using distribution's package.
-# See: https://github.com/pocl/pocl/issues/294
-docker exec travis-ci bash -c "git clone https://github.com/pocl/pocl.git"
-docker exec travis-ci bash -c "cd ./pocl && cmake . -DCMAKE_INSTALL_PREFIX=/usr"
-docker exec travis-ci bash -c "cd ./pocl && make && make install"
 
 # script
 docker exec travis-ci bash -c "cd /primitiv && cmake . -DPRIMITIV_USE_EIGEN=ON -DPRIMITIV_USE_OPENCL=ON -DPRIMITIV_BUILD_C_API=ON -DPRIMITIV_BUILD_TESTS=ON -DEIGEN3_INCLUDE_DIR=/primitiv/eigen -DPRIMITIV_GTEST_SOURCE_DIR=/usr/src/googletest"
